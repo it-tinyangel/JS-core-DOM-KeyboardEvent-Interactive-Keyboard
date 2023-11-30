@@ -1,0 +1,143 @@
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	color: #000;
+	font-size: .85rem;
+	background-color: lightgrey;
+}
+
+p {
+	margin: .75rem 0;
+	text-align: center;
+}
+
+textarea {
+	padding: .5rem;
+	width: 100%;
+	height: 185px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.25rem;
+	resize: none;
+	outline: none;
+	overflow: auto;
+	border-radius: 4px;
+	background: rgb(210, 210, 210);
+	background: linear-gradient(90deg, rgba(210, 210, 210, 1) 0%, rgba(236, 236, 236, 1) 50%, rgba(210, 210, 210, 1) 100%);
+}
+
+.keyboard-wrap {
+	margin: 20vh auto 0;
+	width: 760px;
+}
+
+.display {
+	margin: 10px 0 0 0;
+}
+
+.keyboard {
+	margin: 2vh 0 0 0;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-between;
+	gap: 5px;
+}
+
+.display,
+.keyboard {
+	padding: 1.5rem;
+	border-radius: .3rem;
+	background: rgb(210, 210, 210);
+	background: linear-gradient(90deg, rgba(210, 210, 210, 1) 0%, rgba(236, 236, 236, 1) 50%, rgba(210, 210, 210, 1) 100%);
+	box-shadow: 0 0 5px 1px rgb(130, 130, 130);
+}
+
+.row {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 5px;
+}
+
+.row:nth-of-type(1) div {
+	height: 40px;
+}
+
+.row:nth-of-type(1) .key {
+	height: 25px;
+	font-size: .75rem;
+}
+
+.key {
+	width: 40px;
+	height: 40px;
+	border: none;
+	outline: none;
+	border-radius: .5rem;
+	font-size: 1rem;
+	color: #fff;
+	background: rgb(0, 0, 0);
+	background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(22, 21, 21, 1) 50%, rgba(0, 0, 0, 1) 100%);
+	box-shadow: 0 2px 2px 0 rgb(130, 130, 130);
+}
+
+.key:is(:active) {
+	color: #000;
+	background: lightgrey;
+}
+
+.key-pressed {
+	color: #000;
+	background: lightgrey;
+}
+
+.backspace,
+.tab,
+.backslash,
+.capslock,
+.enter,
+.leftshift,
+.rightshift,
+.other,
+.space {
+	font-size: .75rem;
+}
+
+.backspace {
+	width: 115px;
+}
+
+.tab,
+.backslash {
+	width: 85px;
+}
+
+.capslock {
+	width: 95px;
+}
+
+.enter {
+	width: 105px;
+}
+
+.leftshift {
+	width: 115px;
+}
+
+.rightshift {
+	width: 140px;
+}
+
+.other {
+	width: 55px;
+}
+
+.space {
+	width: 350px;
+}
