@@ -16,7 +16,7 @@ const arrowUp = document.querySelector('.arrow-up');
 const arrowDown = document.querySelector('.arrow-down');
 const arrowRight = document.querySelector('.arrow-right');
 
-document.addEventListener('keydown', function (event) {
+inputText.addEventListener('keydown', function (event) {
 	const key = event.code;
 
 	keys.forEach(button => {
@@ -68,7 +68,7 @@ document.addEventListener('keydown', function (event) {
 	handleCapsLock(event);
 });
 
-document.addEventListener('keyup', function (event) {
+inputText.addEventListener('keyup', function (event) {
 	const key = event.code;
 
 	keys.forEach(button => {
