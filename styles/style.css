@@ -81,11 +81,6 @@ p {
 	transition: 0.2s;
 }
 
-/* .key:is(:active) {
-	color: #000;
-	background: lightgrey;
-} */
-
 .key.active {
 	color: #000;
 	background: lightgrey;
