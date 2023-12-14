@@ -2,7 +2,7 @@ const inputText = document.querySelector('.input-text');
 const keys = document.querySelectorAll('.key');
 const capsLockKey = document.querySelector('.capslock_key');
 
-document.addEventListener('keydown', function (e) {
+inputText.addEventListener('keydown', function (e) {
 	const key = e.code;
 
 	keys.forEach(button => {
@@ -15,7 +15,7 @@ document.addEventListener('keydown', function (e) {
 	handleCapsLock(e);
 });
 
-document.addEventListener('keyup', function (e) {
+inputText.addEventListener('keyup', function (e) {
 	const key = e.code;
 
 	keys.forEach(button => {
