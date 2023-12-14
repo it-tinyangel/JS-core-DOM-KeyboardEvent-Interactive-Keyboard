@@ -6,7 +6,7 @@ inputText.addEventListener('keydown', function (e) {
 	const key = e.code;
 
 	keys.forEach(button => {
-		if (event.key.toLowerCase() === button.textContent.toLowerCase()) {
+		if (e.key.toLowerCase() === button.textContent.toLowerCase()) {
 			button.classList.add('active');
 		}
 		document.getElementById(key).classList.add('active');
