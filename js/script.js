@@ -4,7 +4,6 @@ const backspaceKey = document.querySelector('.backspace_key');
 const tabKey = document.querySelector('.tab_key');
 const capsLockKey = document.querySelector('.capslock_key');
 const spaceKey = document.querySelector('.space_key');
-const shiftKey = document.querySelector('.shift_key');
 const shiftLeftKey = document.querySelector('.shift-left');
 const shiftRightKey = document.querySelector('.shift-right');
 const ctrlLeftKey = document.querySelector('.ctrl-left');
