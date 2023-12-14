@@ -9,7 +9,7 @@ inputText.addEventListener('keydown', function (e) {
 		if (e.key.toLowerCase() === button.textContent.toLowerCase()) {
 			button.classList.add('active');
 		}
-		document.getElementById(key).classList.add('active');
+		document.getElementById(e.code).classList.add('active');
 	});
 
 	handleCapsLock(e);
@@ -22,7 +22,7 @@ inputText.addEventListener('keyup', function (e) {
 		if (e.key.toLowerCase() === button.textContent.toLowerCase()) {
 			button.classList.remove('active');
 		}
-		document.getElementById(key).classList.remove('active');
+		document.getElementById(e.code).classList.remove('active');
 	});
 
 	handleCapsLock(e);
