@@ -8,49 +8,46 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	color: #000;
-	font-size: .85rem;
+	font-size: .75rem;
 	background-color: lightgrey;
 }
 
 p {
-	margin: .75rem 0;
-	text-align: center;
+	margin: 1rem auto;
 }
 
-textarea {
-	padding: .5rem;
+.input-text {
+	padding: 1.5rem 3.75rem;
 	width: 100%;
-	height: 185px;
+	width: 800px;
+	height: 150px;
 	font-family: 'Roboto', sans-serif;
-	font-size: 1.25rem;
 	resize: none;
 	outline: none;
 	overflow: auto;
 	border-radius: 4px;
 	background: rgb(210, 210, 210);
 	background: linear-gradient(90deg, rgba(210, 210, 210, 1) 0%, rgba(236, 236, 236, 1) 50%, rgba(210, 210, 210, 1) 100%);
+	transition: 0.2s;
 }
 
 .keyboard-wrap {
 	margin: 20vh auto 0;
-	width: 760px;
+	width: 800px;
+	display: flex;
+	flex-direction: column;
 }
 
-.display {
-	margin: 10px 0 0 0;
-}
-
-.keyboard {
+.keyboard_keys {
 	margin: 2vh 0 0 0;
-	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	align-content: space-between;
 	gap: 5px;
 }
 
-.display,
-.keyboard {
+.keyboard_display,
+.keyboard_keys {
 	padding: 1.5rem;
 	border-radius: .3rem;
 	background: rgb(210, 210, 210);
@@ -58,20 +55,16 @@ textarea {
 	box-shadow: 0 0 5px 1px rgb(130, 130, 130);
 }
 
+.keyboard_display {
+	padding: 0;
+}
+
 .row {
-	width: 100%;
+	margin: auto;
+	width: calc(760px - 10%);
 	display: flex;
 	justify-content: space-between;
 	gap: 5px;
-}
-
-.row:nth-of-type(1) div {
-	height: 40px;
-}
-
-.row:nth-of-type(1) .key {
-	height: 25px;
-	font-size: .75rem;
 }
 
 .key {
@@ -85,59 +78,70 @@ textarea {
 	background: rgb(0, 0, 0);
 	background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(22, 21, 21, 1) 50%, rgba(0, 0, 0, 1) 100%);
 	box-shadow: 0 2px 2px 0 rgb(130, 130, 130);
+	transition: 0.2s;
 }
 
-.key:is(:active) {
+.key.active {
 	color: #000;
 	background: lightgrey;
 }
 
-.key-pressed {
+.capslock_key.active {
 	color: #000;
 	background: lightgrey;
 }
 
-.backspace,
-.tab,
-.backslash,
-.capslock,
-.enter,
-.leftshift,
-.rightshift,
-.other,
-.space {
+.backspace_key,
+.tab_key,
+.backslash_key,
+.capslock_key,
+.enter_key,
+.shift_key,
+.ctrl_key,
+.alt_key,
+.arrow_key {
 	font-size: .75rem;
+	flex-grow: 1;
 }
 
-.backspace {
-	width: 115px;
+.backspace_key {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
-.tab,
-.backslash {
-	width: 85px;
+.enter_key {
+	flex-grow: 1.25;
 }
 
-.capslock {
-	width: 95px;
+.space_key {
+	flex-grow: 40;
 }
 
-.enter {
-	width: 105px;
+.two_arrows {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	flex-grow: 5;
+	gap: 3px;
 }
 
-.leftshift {
-	width: 115px;
+.two_arrows>.arrow_key {
+	width: 100%;
+	height: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.rightshift {
-	width: 140px;
+.row:nth-of-type(5) .arrow_key:nth-of-type(1) svg {
+	transform: rotate(90deg);
 }
 
-.other {
-	width: 55px;
+.row:nth-of-type(5) .arrow_key:nth-of-type(2) svg {
+	transform: rotate(90deg);
 }
 
-.space {
-	width: 350px;
+.row:nth-of-type(5) .arrow_key:last-child {
+	transform: rotate(180deg);
 }
