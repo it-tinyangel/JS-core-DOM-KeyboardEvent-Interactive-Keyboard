@@ -1,46 +1,98 @@
 const inputText = document.querySelector('.input-text');
-const keys = document.querySelectorAll('.key');
 const capsLockKey = document.querySelector('.capslock_key');
+const shiftRightKey = document.querySelector('.shift-right');
+const shiftLeftKey = document.querySelector('.shift-left');
+const altRightKey = document.querySelector('.alt-right');
+const ctrlLeftKey = document.querySelector('.ctrl-left');
 
-inputText.addEventListener('keydown', function (e) {
-	const key = e.code;
+document.addEventListener('keydown', handleKeyDown);
+document.addEventListener('keyup', handleKeyUp);
 
-	keys.forEach(button => {
-		if (e.key.toLowerCase() === button.textContent.toLowerCase()) {
-			button.classList.add('active');
-		}
-		document.getElementById(e.code).classList.add('active');
-	});
+inputText.focus();
 
-	handleCapsLock(e);
-});
+function handleKeyDown(event) {
+	const keyElement = document.getElementById(event.code);
 
-inputText.addEventListener('keyup', function (e) {
-	const key = e.code;
-
-	keys.forEach(button => {
-		if (e.key.toLowerCase() === button.textContent.toLowerCase()) {
-			button.classList.remove('active');
-		}
-		document.getElementById(e.code).classList.remove('active');
-	});
-
-	handleCapsLock(e);
-});
-
-inputText.addEventListener('keydown', (e) => {
-	const key = e.code;
-
-	if (key == 'Tab') {
-		e.preventDefault();
-		inputText.value += '	';
+	if (keyElement) {
+		keyElement.classList.add('active');
 	}
-})
 
-function handleCapsLock(e) {
-	if (e.getModifierState('CapsLock')) {
-		capsLockKey.classList.add('active');
-	} else {
-		capsLockKey.classList.remove('active');
+	if (isTabPress(event)) {
+		insertTabCharacter();
+		event.preventDefault();
+	}
+
+	if (isCapsLockPress(event)) {
+		handleCapsLock(event);
+	}
+
+	if (isCtrlOrAltPress(event)) {
+		event.preventDefault();
+	}
+
+	handleShiftPress(event);
+}
+
+function handleKeyUp(event) {
+	const keyElement = document.getElementById(event.code);
+
+	if (keyElement) {
+		keyElement.classList.remove('active');
+	}
+
+	if (isCapsLockPress(event)) {
+		handleCapsLock(event);
+	}
+
+	handleShiftPress(event);
+}
+
+function isTabPress(event) {
+	return event.key === 'Tab';
+}
+
+function insertTabCharacter() {
+	const { value, selectionStart, selectionEnd } = inputText;
+
+	inputText.value = `${value.substring(0, selectionStart)}\t${value.substring(selectionEnd)}`;
+	inputText.selectionStart = inputText.selectionEnd = selectionEnd + 1;
+}
+
+function handleCapsLockPress(event) {
+	if (capsLockKey) {
+		handleCapsLock(event);
+	}
+}
+
+function isCapsLockPress(event) {
+	return event.key === 'CapsLock';
+}
+
+function handleCapsLock(event) {
+	if (capsLockKey) {
+		const isCapsLockOn = event.getModifierState('CapsLock');
+
+		capsLockKey.classList.toggle('active', isCapsLockOn);
+	}
+}
+
+function isCtrlOrAltPress(event) {
+	return (event.ctrlKey && !event.altKey) || (!event.ctrlKey && event.altKey);
+}
+
+function handleShiftPress(event) {
+	const isShiftRight = event.key === 'Shift' || event.code === 'ShiftRight';
+	const isShiftLeft = event.key === 'Shift' && event.code === 'ShiftLeft';
+
+	if (isShiftRight && event.type === 'keydown') {
+		shiftRightKey.classList.add('active');
+	} else if (isShiftRight && event.type === 'keyup') {
+		shiftRightKey.classList.remove('active');
+	}
+
+	if (isShiftLeft) {
+		if (event.type === 'keydown') {
+			shiftRightKey.classList.remove('active');
+		}
 	}
 }
