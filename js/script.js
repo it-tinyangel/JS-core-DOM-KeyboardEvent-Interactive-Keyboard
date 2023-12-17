@@ -31,6 +31,7 @@ function handleKeyDown(event) {
 	}
 
 	handleShiftPress(event);
+	handleAltRightKey(event);
 }
 
 function handleKeyUp(event) {
@@ -94,5 +95,15 @@ function handleShiftPress(event) {
 		if (event.type === 'keydown') {
 			shiftRightKey.classList.remove('active');
 		}
+	}
+}
+
+function handleAltRightKey(event) {
+	const isRightAlt = event.code === 'AltRight' && event.key === 'AltGraph' && event.location === 2;
+
+	if (isRightAlt && event.type === 'keydown') {
+		ctrlLeftKey.classList.remove('active');
+	} else if (isRightAlt && event.type === 'keyup') {
+		ctrlLeftKey.classList.remove('active');
 	}
 }
