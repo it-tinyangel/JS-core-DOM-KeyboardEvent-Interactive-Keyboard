@@ -2,4 +2,4 @@
 
 ### The Document Object Model. The HTML DOM Element classList, Event Object, getComputedStyle() method, KeyboardEvent Object
 
-### Keyboard
+### Interactive Keyboard
