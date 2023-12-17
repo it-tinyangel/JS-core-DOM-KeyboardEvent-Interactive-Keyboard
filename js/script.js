@@ -1,21 +1,23 @@
 const inputText = document.querySelector('.input-text');
 const keys = document.querySelectorAll('.key');
-const backspaceKey = document.querySelector('.backspace_key');
-const tabKey = document.querySelector('.tab_key');
-const capsLockKey = document.querySelector('.capslock_key');
-const spaceKey = document.querySelector('.space_key');
-const shiftLeftKey = document.querySelector('.shift-left');
-const shiftRightKey = document.querySelector('.shift-right');
-const ctrlLeftKey = document.querySelector('.ctrl-left');
-const ctrlRightKey = document.querySelector('.ctrl-right');
-const altLeftKey = document.querySelector('.alt-left');
-const altRightKey = document.querySelector('.alt-right');
-const arrowLeft = document.querySelector('.arrow-left');
-const arrowUp = document.querySelector('.arrow-up');
-const arrowDown = document.querySelector('.arrow-down');
-const arrowRight = document.querySelector('.arrow-right');
+const specialKeys = {
+	Backspace: document.querySelector('.backspace_key'),
+	Tab: document.querySelector('.tab_key'),
+	Space: document.querySelector('.space_key'),
+	CapsLock: document.querySelector('.capslock_key'),
+	ShiftLeft: document.querySelector('.shift-left'),
+	ShiftRight: document.querySelector('.shift-right'),
+	ControlLeft: document.querySelector('.ctrl-left'),
+	ControlRight: document.querySelector('.ctrl-right'),
+	AltLeft: document.querySelector('.alt-left'),
+	AltRight: document.querySelector('.alt-right'),
+	ArrowLeft: document.querySelector('.arrow-left'),
+	ArrowUp: document.querySelector('.arrow-up'),
+	ArrowDown: document.querySelector('.arrow-down'),
+	ArrowRight: document.querySelector('.arrow-right')
+};
 
-inputText.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', function (event) {
 	const key = event.code;
 
 	keys.forEach(button => {
@@ -24,50 +26,21 @@ inputText.addEventListener('keydown', function (event) {
 		}
 	});
 
-	if (key === 'Backspace') {
-		backspaceKey.classList.add('active');
+	if (specialKeys[key]) {
+		specialKeys[key].classList.add('active');
 	}
+
 	if (key === 'Tab') {
-		tabKey.classList.add('active');
-	}
-	if (key === 'Space') {
-		spaceKey.classList.add('active');
-	}
-	if (key === 'ShiftLeft') {
-		shiftLeftKey.classList.add('active');
-	}
-	if (key === 'ShiftRight') {
-		shiftRightKey.classList.add('active');
-	}
-	if (key === 'ControlLeft') {
-		ctrlLeftKey.classList.add('active');
-	}
-	if (key === 'ControlRight') {
-		ctrlRightKey.classList.add('active');
-	}
-	if (key === 'AltLeft') {
-		altLeftKey.classList.add('active');
-	}
-	if (key === 'AltRight') {
-		altRightKey.classList.add('active');
-	}
-	if (key === 'ArrowLeft') {
-		arrowLeft.classList.add('active');
-	}
-	if (key === 'ArrowUp') {
-		arrowUp.classList.add('active');
-	}
-	if (key === 'ArrowDown') {
-		arrowDown.classList.add('active');
-	}
-	if (key === 'ArrowRight') {
-		arrowRight.classList.add('active');
+		event.preventDefault();
+		inputText.value += '\t';
 	}
 
 	handleCapsLock(event);
+	handleShiftRight(event);
+	handleAlt(event);
 });
 
-inputText.addEventListener('keyup', function (event) {
+document.addEventListener('keyup', function (event) {
 	const key = event.code;
 
 	keys.forEach(button => {
@@ -76,60 +49,42 @@ inputText.addEventListener('keyup', function (event) {
 		}
 	});
 
-	if (key === 'Backspace') {
-		backspaceKey.classList.remove('active');
-	}
-	if (key === 'Tab') {
-		tabKey.classList.remove('active');
-	}
-	if (key === 'Space') {
-		spaceKey.classList.remove('active');
-	}
-	if (key === 'ShiftLeft') {
-		shiftLeftKey.classList.remove('active');
-	}
-	if (key === 'ShiftRight') {
-		shiftRightKey.classList.remove('active');
-	}
-	if (key === 'ControlLeft') {
-		ctrlLeftKey.classList.remove('active');
-	}
-	if (key === 'ControlRight') {
-		ctrlRightKey.classList.remove('active');
-	}
-	if (key === 'AltLeft') {
-		altLeftKey.classList.remove('active');
-	}
-	if (key === 'AltRight') {
-		altRightKey.classList.remove('active');
-	}
-	if (key === 'ArrowLeft') {
-		arrowLeft.classList.remove('active');
-	}
-	if (key === 'ArrowUp') {
-		arrowUp.classList.remove('active');
-	}
-	if (key === 'ArrowDown') {
-		arrowDown.classList.remove('active');
-	}
-	if (key === 'ArrowRight') {
-		arrowRight.classList.remove('active');
+	if (specialKeys[key]) {
+		specialKeys[key].classList.remove('active');
 	}
 
 	handleCapsLock(event);
+	handleShiftRight(event);
+	handleAlt(event);
 });
 
-inputText.addEventListener('keydown', (event) => {
-	if (event.key == 'Tab') {
-		event.preventDefault();
-		inputText.value += '	';
-	}
-})
-
 function handleCapsLock(event) {
-	if (event.getModifierState('CapsLock')) {
-		capsLockKey.classList.add('active');
-	} else {
-		capsLockKey.classList.remove('active');
+	const { CapsLock } = specialKeys;
+	CapsLock.classList.toggle('active', event.getModifierState('CapsLock'));
+}
+
+function handleShiftRight(event) {
+	const { ShiftRight } = specialKeys;
+	const { key, code, type } = event;
+
+	if ((key === 'Shift' || code === 'ShiftRight') && type === 'keydown') {
+		ShiftRight.classList.add('active');
+	} else if ((key === 'Shift' || code === 'ShiftRight') && type === 'keyup') {
+		ShiftRight.classList.remove('active');
+	}
+
+	if (key === 'Shift' && code === 'ShiftLeft' && type === 'keydown') {
+		ShiftRight.classList.remove('active');
+	}
+}
+
+function handleAlt(event) {
+	const { AltRight, AltLeft } = specialKeys;
+	const { key, code, type } = event;
+
+	if (key === 'Alt' && code === 'AltLeft' && type === 'keydown') {
+		AltRight.classList.remove('active');
+	} else if (key === 'Alt' && code === 'AltRight' && type === 'keydown') {
+		AltLeft.classList.remove('active');
 	}
 }
