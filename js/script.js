@@ -4,6 +4,7 @@ const specialKeys = {
 	Backspace: document.querySelector('.backspace_key'),
 	Tab: document.querySelector('.tab_key'),
 	Space: document.querySelector('.space_key'),
+	Enter: document.querySelector('.enter_key'),
 	CapsLock: document.querySelector('.capslock_key'),
 	ShiftLeft: document.querySelector('.shift-left'),
 	ShiftRight: document.querySelector('.shift-right'),
@@ -30,6 +31,10 @@ document.addEventListener('keydown', function (event) {
 		specialKeys[key].classList.add('active');
 	}
 
+	if (key === 'Enter' && specialKeys.Enter) {
+		specialKeys.Enter.classList.add('active');
+	}
+
 	if (key === 'Tab') {
 		event.preventDefault();
 		inputText.value += '\t';
@@ -51,6 +56,10 @@ document.addEventListener('keyup', function (event) {
 
 	if (specialKeys[key]) {
 		specialKeys[key].classList.remove('active');
+	}
+
+	if (key === 'Enter' && specialKeys.Enter) {
+		specialKeys.Enter.classList.remove('active');
 	}
 
 	handleCapsLock(event);
